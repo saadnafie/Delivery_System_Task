@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 
+//-------------------Sender-------------------------------------------------------
 Route::get('/sender-dashboard', function () {
     return view('sender/sender-dashboard');
 });
@@ -27,10 +28,19 @@ Route::get('/create-parcel', function () {
     return view('sender/create-parcel');
 });
 
-Route::get('/parcels-list', function () {
+Route::get('/parcels', function () {
     return view('sender/parcels');
 });
 
+
+//-------------------Biker-------------------------------------------------------
+Route::get('/to-do', function () {
+    return view('biker/to-do');
+});
+
+Route::get('/parcels-list', function () {
+    return view('biker/parcels-list');
+});
 
 
 Route::get('/dashboard', function () {
