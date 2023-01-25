@@ -39,21 +39,21 @@
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <!--<hr class="sidebar-divider my-0">-->
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+           <!-- <li class="nav-item active">
                 <a class="nav-link" href="{{ url('sender-dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
-            </li>
+            </li>-->
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('create-parcel') }}">
+                <a class="nav-link" href="{{ route('create-parcel') }}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Create Parcel</span></a>
             </li>
@@ -63,7 +63,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('parcels') }}">
+                <a class="nav-link" href="{{ route('current-parcels') }}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Current Parcels</span></a>
             </li>
@@ -73,7 +73,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('parcels') }}">
+                <a class="nav-link" href="{{ route('complete-parcels') }}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Completed Parcels</span></a>
             </li>
@@ -92,10 +92,13 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fas fa-fw fa-sign-out-alt"></i>
                     <span>Logout</span></a>
             </li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -293,7 +296,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{asset('dashboard_assets/img/undraw_profile.svg')}}">
                             </a>
@@ -313,7 +316,7 @@
                                     Activity Log
                                 </a>-->
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
