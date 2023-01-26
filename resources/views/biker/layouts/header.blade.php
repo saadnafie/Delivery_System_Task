@@ -43,9 +43,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url('sender-dashboard') }}">
+                <a class="nav-link" href="{{ url('to-do') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>To-do</span></a>
             </li>
 
             <!-- Divider -->
@@ -53,42 +53,24 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('create-parcel') }}">
+                <a class="nav-link" href="{{ url('parcels-list') }}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span>Create Parcel</span></a>
+                    <span>Available Parcels</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('parcels') }}">
-                    <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span>Current Parcels</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('parcels') }}">
+                <a class="nav-link" href="{{ url('parcels-list') }}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Completed Parcels</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <!--<li class="nav-item">
-                <a class="nav-link" href="{{ url('parcels-list') }}">
-                    <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span>Cancelled Parcels</span></a>
-            </li>
-
-            <hr class="sidebar-divider my-0">-->
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
