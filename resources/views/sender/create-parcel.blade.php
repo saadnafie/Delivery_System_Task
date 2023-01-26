@@ -16,23 +16,24 @@
                             <!-- Content Row -->
                             <div class="row">
                                 <div class="col-xl-6 col-md-6 mb-4">
-                                    <form class="user">
+                                    <form class="user" method="POST" action="{{ route('add-parcel') }}">
+                                        @csrf
                                         <div class="form-group">
                                             <label>Pick-up Address</label>
-                                            <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Pick-up Address" required>
+                                            <input type="text" class="form-control form-control-user" name="pickup_address" placeholder="Pick-up Address" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Drop-off Address</label>
-                                            <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Drop-off Address" required>
+                                            <input type="text" class="form-control form-control-user" name="dropoff_ddress" placeholder="Drop-off Address" required>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>Parcel Type</label>
-                                                <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Car Keys" value="Car Keys" required>
+                                                <input type="text" class="form-control form-control-user" name="parcel_type" placeholder="Car Keys" value="Car Keys" >
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Parcel Weight</label>
-                                                <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="0.5 Kg" value="0.5 Kg" required>
+                                                <input type="text" class="form-control form-control-user" name="parcel_weight" placeholder="0.5 Kg" value="0.5 Kg" >
                                             </div>
                                         </div>
                                         
