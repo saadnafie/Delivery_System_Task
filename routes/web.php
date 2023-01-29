@@ -26,55 +26,31 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function(){
 
-Route::get('dashboard', [HomeController::class, 'index']);
+Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+//-------------------Sender-------------------------------------------------------
 
 Route::middleware(['sender'])->prefix('sender')->group(function(){
 
-    Route::get('create-parcel', [ParcelController::class, 'index'])->name('create-parcel');
-    Route::post('add-parcel', [ParcelController::class, 'add_parcel'])->name('add-parcel');
+    Route::resource('parcels', ParcelController::class);
 
-    Route::get('current-parcels', [ParcelController::class, 'current_parcel'])->name('current-parcels');
     Route::get('complete-parcels', [ParcelController::class, 'complete_parcel'])->name('complete-parcels');
 
 });
+//-------------------Biker-------------------------------------------------------
 
 Route::middleware(['biker'])->prefix('biker')->group(function(){
 
-    Route::get('to-do', [OrderController::class, 'index'])->name('to-do');
+    Route::resource('orders', OrderController::class);
+    Route::resource('order-parcels', ParcelController::class);
+    Route::get('/parcels-list', [OrderController::class,'available_parcels']);
+    Route::get('/complete-parcels', [OrderController::class,'complete_parcels']);
 
 });
 
 });
 
-//-------------------Sender-------------------------------------------------------
-Route::get('/sender-dashboard', function () {
-    return view('sender/sender-dashboard');
-});
-
-/*Route::get('/create-parcel', function () {
-    return view('sender/create-parcel');
-});*/
-
-Route::get('/parcels', function () {
-    return view('sender/parcels');
-});
-
-
-//-------------------Biker-------------------------------------------------------
-/*Route::get('/to-do', function () {
-    return view('biker/to-do');
-});*/
-
-Route::get('/parcels-list', function () {
-    return view('biker/parcels-list');
-});
-
-
-/*Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
+/*
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

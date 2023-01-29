@@ -26,49 +26,53 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                      @foreach($parcels as $index=>$parcelData)
                                         <tr>
-                                            <td>1</td>
-                                            <td>Sender1 <br> +49 222 39 989 221 </td>
+                                            <td>{{$index+1}}</td>
+                                            <td>{{$parcelData->sender->name}} <br>{{$parcelData->sender->phone}} </td>
                                             <td>Car Keys <br> 0.5 KG</td>
-                                            <td>Berline</td>
-                                            <td>Munie</td>
+                                            <td>{{$parcelData->pickup_address}}</td>
+                                            <td>{{$parcelData->dropoff_address}}</td>
                                             <td>
-                                            <button type="button" class="btn btn-info btn-circle" data-toggle="modal" data-target="#myModal">
+                                            <button type="button" class="btn btn-info btn-circle" data-toggle="modal" data-target="#myModal{{$index+1}}">
                                                  <i class="fas fa-info-circle"></i>
                                             </button>
                                                  <!-- The Modal -->
-                                                <div class="modal fade" id="myModal">
+                                                <div class="modal fade" id="myModal{{$index+1}}">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
-                                                    
+
                                                         <!-- Modal Header -->
                                                         <div class="modal-header bg-primary text-white">
                                                             <h6 class="modal-title">Add Pick-up/Drop-off Time</h6>
                                                             <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
                                                         </div>
-                                                        
+
                                                         <!-- Modal body -->
                                                         <div class="modal-body">
-                                                            <form method="post" action="" class="user">
+                                                            <form method="post" action="{{ route('orders.store') }}" class="user">
+                                                              @csrf
+                                                                <input type="hidden" value="{{$parcelData->id}}" name="parcel_id" >
                                                                 <div class="form-group">
                                                                     <label for="Pickuptime"> Pick-up (date and time):</label>
-                                                                    <input type="datetime-local" id="birthdaytime" name="birthdaytime" class="form-control form-control-user" required>
+                                                                    <input type="datetime-local" id="birthdaytime" name="pickup_timestamp" class="form-control form-control-user" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="Dropofftime">Drop-off (date and time):</label>
-                                                                    <input type="datetime-local" id="birthdaytime" name="birthdaytime" class="form-control form-control-user" required>
+                                                                    <input type="datetime-local" id="birthdaytime" name="dropoff_timestamp" class="form-control form-control-user" required>
                                                                 </div>
                                                                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                                    Confirm
+                                                                    Confirm Request
                                                                 </button>
                                                             </form>
                                                         </div>
-                                                        
+
                                                     </div>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

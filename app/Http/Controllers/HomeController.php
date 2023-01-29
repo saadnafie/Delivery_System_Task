@@ -13,9 +13,9 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->user_type_id == 1) {
-            return redirect()->route('create-parcel'); 
+            return redirect()->route('parcels.index');
         }else if (auth()->user()->user_type_id == 2) {
-            return redirect()->route('to-do'); 
+            return redirect()->route('orders.index');
         }
     }
 }

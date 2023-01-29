@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
 
 class Sender
 {
@@ -16,8 +17,12 @@ class Sender
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->user_type_id == 1) {
+      if(Auth::check()){
+        if (Auth::user()->user_type_id == 1) {
             return $next($request);
         }
+        return redirect('/dashboard');
+      }
+      return redirect()->route('login');
     }
 }

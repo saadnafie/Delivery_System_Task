@@ -53,7 +53,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('create-parcel') }}">
+                <a class="nav-link" href="{{ route('parcels.create') }}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Create Parcel</span></a>
             </li>
@@ -63,7 +63,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('current-parcels') }}">
+                <a class="nav-link" href="{{ route('parcels.index') }}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Current Parcels</span></a>
             </li>

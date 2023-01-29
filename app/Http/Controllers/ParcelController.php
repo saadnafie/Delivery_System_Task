@@ -15,10 +15,33 @@ class ParcelController extends Controller
      */
     public function index()
     {
+        $parcels = Parcel::with('order', 'status')->where('sender_id', auth()->user()->id)->where('status_id', '!=', 4)->get();
+        //return $parcels;
+        return view('sender/parcels' ,compact('parcels'));
+    }
+
+    public function complete_parcel(){
+        $parcels = Parcel::with('order', 'status')->where('sender_id', auth()->user()->id)->where('status_id', 4)->get();
+        return view('sender/parcels', compact('parcels'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         return view('sender/create-parcel');
     }
 
-    public function add_parcel(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $request->validate([
             'pickup_address' => 'required',
@@ -33,39 +56,7 @@ class ParcelController extends Controller
         $parcel->weight = $request->parcel_weight;
         $parcel->save();
 
-        return redirect()->route('current-parcels'); 
-    }
-
-    public function current_parcel(){
-        $pending_parcels = Parcel::where('sender_id', auth()->user()->id)->where('status_id', '=', 1)->get();
-        $intransit_parcels = Parcel::where('sender_id', auth()->user()->id)->where('status_id', '=', 2)->get();
-        return view('sender/parcels' ,compact('pending_parcels', 'intransit_parcels'));
-    }
-
-    public function complete_parcel(){
-        $complete_parcels = Parcel::where('sender_id', auth()->user()->id)->where('status_id', '=', 3)->get();
-        return view('sender/complete-parcels', compact('complete_parcels'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return redirect()->route('current-parcels');
     }
 
     /**
@@ -76,7 +67,7 @@ class ParcelController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -99,7 +90,8 @@ class ParcelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Parcel::find($id)->update(['status_id' => $request->status_id]);
+        return back();
     }
 
     /**
