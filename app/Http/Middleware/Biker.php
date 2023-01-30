@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
 
 class Biker
 {
@@ -16,8 +17,12 @@ class Biker
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->user_type_id == 2) {
+      if(Auth::check()){
+        if (Auth::user()->user_type_id == 2) {
             return $next($request);
         }
+        return redirect('/dashboard');
+      }
+      return redirect()->route('login');
     }
 }

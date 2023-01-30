@@ -16,7 +16,7 @@
                             <!-- Content Row -->
                             <div class="row">
                                 <div class="col-xl-6 col-md-6 mb-4">
-                                    <form class="user" method="POST" action="{{ route('add-parcel') }}">
+                                    <form class="user" method="POST" action="{{ route('parcels.store') }}">
                                         @csrf
                                         <div class="form-group">
                                             <label>Pick-up Address</label>

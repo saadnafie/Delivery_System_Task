@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url('to-do') }}">
+                <a class="nav-link" href="{{ route('orders.index') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>To-do</span></a>
             </li>
@@ -53,7 +53,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('parcels-list') }}">
+                <a class="nav-link" href="{{ url('biker/parcels-list') }}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Available Parcels</span></a>
             </li>
@@ -64,7 +64,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('parcels-list') }}">
+                <a class="nav-link" href="{{ url('biker/complete-parcels') }}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Completed Parcels</span></a>
             </li>
