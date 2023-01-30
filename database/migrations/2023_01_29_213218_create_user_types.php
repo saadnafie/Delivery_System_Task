@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-          $table->increments('id');
-          $table->string('name',100);
-          $table->string('email',150)->unique();
-          $table->string('phone',25)->unique();
-          $table->timestamp('email_verified_at')->nullable();
-          $table->string('password',100);
-          $table->rememberToken();
-          $table->unsignedTinyInteger('user_type_id');
+        Schema::create('user_types', function (Blueprint $table) {
+          $table->tinyIncrements('id');
+          $table->string('user_type',50);
           $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
           $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -34,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user_types');
     }
 };

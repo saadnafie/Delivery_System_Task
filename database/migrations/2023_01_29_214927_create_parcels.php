@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('parcels', function (Blueprint $table) {
           $table->increments('id');
-          $table->string('name',100);
-          $table->string('email',150)->unique();
-          $table->string('phone',25)->unique();
-          $table->timestamp('email_verified_at')->nullable();
-          $table->string('password',100);
-          $table->rememberToken();
-          $table->unsignedTinyInteger('user_type_id');
+          $table->unsignedInteger('sender_id');
+          $table->string('parcel_type',200);
+          $table->unsignedInteger('weight');
+          $table->tinyText('pickup_address');
+          $table->tinyText('dropoff_address');
+          $table->unsignedTinyInteger('status_id');
           $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
           $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('parcels');
     }
 };
